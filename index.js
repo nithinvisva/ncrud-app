@@ -1,12 +1,17 @@
 const express = require("express")
 const app = express()
 const mongoose = require('mongoose')
+const record = require('./src/routes/record')
+const router = require('./src/routes/users')
+const auth= require('./src/middleware/auth')
 const port = process.env.PORT || 3000
 
 
 app.get("/", (req, res) => {
   res.send({ message: "Hello World!" })
 })
+app.use('/record',auth.auth, record);
+app.use('/users', router);
 const url = `mongodb+srv://nithinvisva:visuakc6999@crudapp.ubtykah.mongodb.net/?retryWrites=true&w=majority`;
 
 const connectionParams={
