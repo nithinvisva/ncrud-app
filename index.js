@@ -3,6 +3,7 @@ const app = express()
 const mongoose = require('mongoose')
 const record = require('./src/routes/record')
 const router = require('./src/routes/users')
+const cors = require('cors')
 const auth= require('./src/middleware/auth')
 const port = process.env.PORT || 3000
 
@@ -10,6 +11,11 @@ const port = process.env.PORT || 3000
 app.get("/", (req, res) => {
   res.send({ message: "Hello World!" })
 })
+
+app.use(cors({
+        origin: "https://n-crud-app.herokuapp.com/"
+    })
+    )
 app.use('/record',auth.auth, record);
 app.use('/users', router);
 const url = `mongodb+srv://nithinvisva:visuakc6999@crudapp.ubtykah.mongodb.net/?retryWrites=true&w=majority`;
