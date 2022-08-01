@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
 })
 
 app.use(cors({
-        origin: "https://n-crud-app.herokuapp.com/"
+        origin: "https://crud-angular-ap.herokuapp.com"
     })
     )
 app.use('/record',auth.auth, record);
